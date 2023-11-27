@@ -37,12 +37,12 @@ namespace SpendWise.Shared.Infrastructure;
 public static class Extensions
 {
     private const string CorrelationIdKey = "correlation-id";
-        
+
     public static IServiceCollection AddInitializer<T>(this IServiceCollection services) where T : class, IInitializer
         => services.AddTransient<IInitializer, T>();
-        
-    public static IServiceCollection  AddModularInfrastructure(this IServiceCollection services,
-        IList<Assembly> assemblies, IList<IModule> modules) 
+
+    public static IServiceCollection AddModularInfrastructure(this IServiceCollection services,
+        IList<Assembly> assemblies, IList<IModule> modules)
     {
         var disabledModules = new List<string>();
         using (var serviceProvider = services.BuildServiceProvider())
@@ -77,7 +77,6 @@ public static class Extensions
         var appOptions = services.GetOptions<AppOptions>("app");
         services.AddSingleton(appOptions);
 
-        services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
         services.AddMemoryCache();
         services.AddHttpClient();
         services.AddSingleton<IRequestStorage, RequestStorage>();
@@ -116,10 +115,11 @@ public static class Extensions
                 {
                     manager.ApplicationParts.Remove(part);
                 }
-                    
+
                 manager.FeatureProviders.Add(new InternalControllerFeatureProvider());
             });
-            
+        services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+
         return services;
     }
 
@@ -132,10 +132,7 @@ public static class Extensions
         app.UseCors("cors");
         app.UseCorrelationId();
         app.UseErrorHandling();
-        app.UseSwagger(options =>
-        {
-            options.SerializeAsV2 = true;
-        });
+        app.UseSwagger(options => { options.SerializeAsV2 = true; });
         app.UseReDoc(reDoc =>
         {
             reDoc.RoutePrefix = "docs";
@@ -185,14 +182,14 @@ public static class Extensions
             ? type.Namespace.Split(".")[splitIndex].ToLowerInvariant()
             : string.Empty;
     }
-        
+
     public static IApplicationBuilder UseCorrelationId(this IApplicationBuilder app)
         => app.Use((ctx, next) =>
         {
             ctx.Items.Add(CorrelationIdKey, Guid.NewGuid());
             return next();
         });
-        
+
     public static Guid? TryGetCorrelationId(this HttpContext context)
-        => context.Items.TryGetValue(CorrelationIdKey, out var id) ? (Guid) id : null;
+        => context.Items.TryGetValue(CorrelationIdKey, out var id) ? (Guid)id : null;
 }

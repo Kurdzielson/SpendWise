@@ -2,6 +2,9 @@ using System.Runtime.CompilerServices;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using SpendWise.Modules.Users.Core.Users.Commands.Admin.CreateUser;
+using SpendWise.Modules.Users.Core.Users.Commands.Admin.LockUser;
+using SpendWise.Modules.Users.Core.Users.Commands.Admin.UnlockUser;
 using SpendWise.Modules.Users.Core.Users.Commands.Public.ChangePassword;
 using SpendWise.Modules.Users.Core.Users.Commands.Public.SignIn;
 using SpendWise.Modules.Users.Core.Users.Commands.Public.SignUp;
@@ -42,5 +45,8 @@ internal static class Extensions
         => services
             .AddScoped<IValidator<ChangePasswordCommand>, ChangePasswordValidator>()
             .AddScoped<IValidator<SignInCommand>, SignInValidator>()
-            .AddScoped<IValidator<SignUpCommand>, SingUpValidator>();
+            .AddScoped<IValidator<SignUpCommand>, SingUpValidator>()
+            .AddScoped<IValidator<CreateUserCommand>, CreateUserValidator>()
+            .AddScoped<IValidator<UnlockUserCommand>, UnlockUserValidator>()
+            .AddScoped<IValidator<LockUserCommand>, LockUserValidator>();
 }
