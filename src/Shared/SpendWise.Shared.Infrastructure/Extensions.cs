@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -39,7 +41,7 @@ public static class Extensions
     public static IServiceCollection AddInitializer<T>(this IServiceCollection services) where T : class, IInitializer
         => services.AddTransient<IInitializer, T>();
         
-    public static IServiceCollection AddModularInfrastructure(this IServiceCollection services,
+    public static IServiceCollection  AddModularInfrastructure(this IServiceCollection services,
         IList<Assembly> assemblies, IList<IModule> modules) 
     {
         var disabledModules = new List<string>();
@@ -75,6 +77,7 @@ public static class Extensions
         var appOptions = services.GetOptions<AppOptions>("app");
         services.AddSingleton(appOptions);
 
+        services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
         services.AddMemoryCache();
         services.AddHttpClient();
         services.AddSingleton<IRequestStorage, RequestStorage>();

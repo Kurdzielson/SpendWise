@@ -1,6 +1,10 @@
 using System.Runtime.CompilerServices;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using SpendWise.Modules.Users.Core.Users.Commands.Public.ChangePassword;
+using SpendWise.Modules.Users.Core.Users.Commands.Public.SignIn;
+using SpendWise.Modules.Users.Core.Users.Commands.Public.SignUp;
 using SpendWise.Modules.Users.Core.Users.DAL;
 using SpendWise.Modules.Users.Core.Users.DAL.Repositories;
 using SpendWise.Modules.Users.Core.Users.Domain.Entities;
@@ -30,6 +34,13 @@ internal static class Extensions
             .AddPostgres<UsersReadDbContext>()
             .AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>()
             .AddUnitOfWork<UsersUnitOfWork>()
-            .AddInitializer<UsersInitializer>();
+            .AddInitializer<UsersInitializer>()
+            .AddValidators();
     }
+
+    private static IServiceCollection AddValidators(this IServiceCollection services)
+        => services
+            .AddScoped<IValidator<ChangePasswordCommand>, ChangePasswordValidator>()
+            .AddScoped<IValidator<SignInCommand>, SignInValidator>()
+            .AddScoped<IValidator<SignUpCommand>, SingUpValidator>();
 }

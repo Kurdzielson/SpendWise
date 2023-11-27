@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State;
 using SpendWise.Shared.Abstraction.Kernel.Types.UserId;
 using SpendWise.Shared.Abstraction.Kernel.ValueObjects.Date;
@@ -34,4 +35,7 @@ internal class User
 
     public static User Create(Email email, Password password, string roleId, UserState userState, Date createdAt)
         => new(email, password, roleId, userState, createdAt);
+
+    public void UpdatePassword(Password newPassword)
+        => Password = newPassword;
 }

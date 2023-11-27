@@ -23,6 +23,6 @@ internal class SingUpValidator : AbstractValidator<SignUpCommand>
         RuleFor(q => q.ConfirmPassword)
             .NotNull().IsRequiredMessage()
             .NotEmpty().IsRequiredMessage()
-            .Equal(a => a.Password).WithMessage("Passwords do not match");
+            .Equal(q => q.Password).WithMessage("Password should match ConfirmPassword");
     }
 }

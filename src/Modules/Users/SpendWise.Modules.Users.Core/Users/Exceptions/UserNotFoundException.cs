@@ -2,7 +2,14 @@ using SpendWise.Shared.Abstraction.Exceptions;
 
 namespace SpendWise.Modules.Users.Core.Users.Exceptions;
 
-internal class UserNotFoundException(string email) : SpendWiseException($"User with email: '{email}' not found")
+internal class UserNotFoundException : SpendWiseException
 {
-    public string Email { get; set; } = email;
+
+    public UserNotFoundException(Guid userId) : this($"User with Id: '{userId}' not found")
+    {
+    }
+
+    public UserNotFoundException(string email) : base($"User with email: '{email}' not found")
+    {
+    }
 }
