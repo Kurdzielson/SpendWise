@@ -8,7 +8,7 @@ internal class UserState
 
     public UserState(string code)
     {
-        if (IsCodeSupported(code))
+        if (!IsCodeSupported(code))
             throw new UnsupportedUserStateException(code);
 
         Code = code;
