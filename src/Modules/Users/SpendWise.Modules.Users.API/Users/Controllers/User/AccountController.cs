@@ -13,7 +13,7 @@ using SpendWise.Shared.Abstraction.Dispatchers;
 using SpendWise.Shared.Infrastructure.Api;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace SpendWise.Modules.Users.API.Users.Controllers.Public;
+namespace SpendWise.Modules.Users.API.Users.Controllers.User;
 
 [Route("accounts")]
 internal class AccountController(IDispatcher dispatcher, IContext context, IUserRequestStorage userRequestStorage,
