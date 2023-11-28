@@ -132,7 +132,10 @@ public static class Extensions
         app.UseCors("cors");
         app.UseCorrelationId();
         app.UseErrorHandling();
-        app.UseSwagger(options => { options.SerializeAsV2 = true; });
+        app.UseSwagger(swagger =>
+        {
+            swagger.SerializeAsV2 = true;
+        });
         app.UseReDoc(reDoc =>
         {
             reDoc.RoutePrefix = "docs";

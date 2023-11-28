@@ -18,11 +18,11 @@ internal class UnlockUserHandler(IUserRepository userRepository, ILogger<UnlockU
             throw new CannotLockAdminAccountException();
 
         if (user.State == AvailableUserStates.Active)
-            throw new UserIsLocked(user.Id);
+            throw new UserIsActive(user.Id);
         
-        user.Lock();
+        user.Unlock();
 
         var userId = await userRepository.UpdateAsync(user, cancellationToken);
-        logger.LogInformation($"User with Id: '{userId}' has been locked.");
+        logger.LogInformation($"User with Id: '{userId}' has been unlocked.");
     }
 }

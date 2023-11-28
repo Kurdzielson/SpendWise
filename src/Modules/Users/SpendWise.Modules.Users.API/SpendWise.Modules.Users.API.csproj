@@ -10,8 +10,4 @@
       <ProjectReference Include="..\SpendWise.Modules.Users.Core\SpendWise.Modules.Users.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Users\Controllers\Admin\" />
-    </ItemGroup>
-
 </Project>

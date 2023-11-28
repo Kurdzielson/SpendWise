@@ -11,10 +11,12 @@ internal class BrowseUsersHandler(UsersReadDbContext context) : IQueryHandler<Br
 {
     public async Task<Paged<UserDto>> HandleAsync(BrowseUsersQuery query, CancellationToken cancellationToken = default)
     {
-        var users = context.Users.AsNoTracking();
+        var users = context.Users
+            .AsNoTracking();
         users = Filter(query, users);
 
         var result = await users
+            .Include(q => q.Role)
             .Select(q => q.AsDto())
             .PaginateAsync(query, cancellationToken);
 
@@ -24,7 +26,7 @@ internal class BrowseUsersHandler(UsersReadDbContext context) : IQueryHandler<Br
     private IQueryable<UserReadModel> Filter(BrowseUsersQuery query, IQueryable<UserReadModel> users)
     {
         if (!string.IsNullOrEmpty(query.Role))
-            users = users.Where(q => q.Role.Name == query.Role.ToLowerInvariant());
+            users = users.Where(q => EF.Functions.Like(q.Role.Name, query.Role.ToLowerInvariant()));
 
         if (query.CreatedAtFrom is not null)
             users = users.Where(q => q.CreatedAt >= query.CreatedAtFrom);
@@ -33,11 +35,12 @@ internal class BrowseUsersHandler(UsersReadDbContext context) : IQueryHandler<Br
             users = users.Where(q => q.CreatedAt <= query.CreatedAtTo);
 
         if (!string.IsNullOrEmpty(query.State))
-            users = users.Where(q => q.State == query.State.ToLowerInvariant());
+            users = users.Where(q => EF.Functions.Like(q.State, query.State));
 
-        users = query.SortOrder.Equals("desc", StringComparison.CurrentCultureIgnoreCase)
-            ? users.OrderByDescending(q => q.CreatedAt)
-            : users.OrderBy(q => q.CreatedAt);
+        users = !string.IsNullOrWhiteSpace(query.SortOrder) &&
+                query.SortOrder.Equals("asc", StringComparison.CurrentCultureIgnoreCase)
+            ? users.OrderBy(q => q.CreatedAt)
+            : users.OrderByDescending(q => q.CreatedAt);
 
         return users;
     }

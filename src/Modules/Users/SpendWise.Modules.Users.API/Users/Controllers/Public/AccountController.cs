@@ -15,6 +15,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace SpendWise.Modules.Users.API.Users.Controllers.Public;
 
+[Route("accounts")]
 internal class AccountController(IDispatcher dispatcher, IContext context, IUserRequestStorage userRequestStorage,
         CookieOptions cookieOptions)
     : BaseController

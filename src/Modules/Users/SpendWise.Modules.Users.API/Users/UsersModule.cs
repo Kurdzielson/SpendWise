@@ -12,10 +12,10 @@ namespace SpendWise.Modules.Users.API.Users;
 internal class UsersModule : IModule
 {
     public string Name { get; } = "Users";
-    public static string UsersPolicy { get; } = "users";
+    public const string Policy = "users";
     public IEnumerable<string> Policies { get; } = new[]
     {
-        UsersPolicy
+        Policy
     };
 
     public void Register(IServiceCollection services)

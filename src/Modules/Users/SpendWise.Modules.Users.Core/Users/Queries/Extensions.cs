@@ -19,12 +19,12 @@ internal static class Extensions
     }
     
     private static T Map<T>(this UserReadModel user) where T : UserDto, new()
-        => new()
+        => new T
         {
             UserId = user.Id,
             Email = user.Email,
             State = AvailableUserStates.GetState(user.State),
-            Role = user.Role.Name,
+            Role = user.Role?.Name,
             CreatedAt = user.CreatedAt
         };
 }
