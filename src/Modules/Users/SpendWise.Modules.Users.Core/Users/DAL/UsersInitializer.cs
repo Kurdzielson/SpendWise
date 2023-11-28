@@ -9,11 +9,16 @@ namespace SpendWise.Modules.Users.Core.Users.DAL;
 internal sealed class UsersInitializer(UsersWriteDbContext dbContext, ILogger<UsersInitializer> logger)
     : IInitializer
 {
-    private static readonly HashSet<string> UserPermissions = new ();
+    private const string Users = "users";
+
+    private static readonly HashSet<string> UserPermissions = new ()
+    {
+        
+    };
 
     private static readonly HashSet<string> AdminPermissions = new (UserPermissions)
     {
-        "users"
+        Users
     };
 
     private readonly IEnumerable<Role> _roles = new List<Role>()

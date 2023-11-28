@@ -1,4 +1,3 @@
-using SpendWise.Modules.Users.Core.DAL.Configurations.Read.Model;
 using SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State;
 
 namespace SpendWise.Modules.Users.Core.Users.DAL.Configurations.Read.Model;

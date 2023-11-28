@@ -1,8 +1,6 @@
-using SpendWise.Modules.Users.Core.DAL.Configurations.Read.Model;
 using SpendWise.Modules.Users.Core.Users.DAL.Configurations.Read.Model;
 using SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State;
 using SpendWise.Modules.Users.Core.Users.DTO;
-using SpendWise.Shared.Abstraction.Kernel.Enums;
 
 namespace SpendWise.Modules.Users.Core.Users.Queries;
 

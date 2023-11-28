@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using SpendWise.Modules.Users.Core.DAL.Configurations.Read;
-using SpendWise.Modules.Users.Core.DAL.Configurations.Read.Model;
 using SpendWise.Modules.Users.Core.Users.DAL.Configurations.Read;
 using SpendWise.Modules.Users.Core.Users.DAL.Configurations.Read.Model;
 

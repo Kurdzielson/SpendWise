@@ -1,6 +1,4 @@
-using SpendWise.Modules.Users.Core.Users.DAL.Configurations.Read.Model;
-
-namespace SpendWise.Modules.Users.Core.DAL.Configurations.Read.Model;
+namespace SpendWise.Modules.Users.Core.Users.DAL.Configurations.Read.Model;
 
 internal class RoleReadModel
 {
