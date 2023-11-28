@@ -1,8 +1,6 @@
-using SpendWise.Modules.Users.Core.DAL.Configurations.Read.Model;
 using SpendWise.Modules.Users.Core.Users.DAL.Configurations.Read.Model;
 using SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State;
 using SpendWise.Modules.Users.Core.Users.DTO;
-using SpendWise.Shared.Abstraction.Kernel.Enums;
 
 namespace SpendWise.Modules.Users.Core.Users.Queries;
 
@@ -21,12 +19,12 @@ internal static class Extensions
     }
     
     private static T Map<T>(this UserReadModel user) where T : UserDto, new()
-        => new()
+        => new T
         {
             UserId = user.Id,
             Email = user.Email,
             State = AvailableUserStates.GetState(user.State),
-            Role = user.Role.Name,
+            Role = user.Role?.Name,
             CreatedAt = user.CreatedAt
         };
 }

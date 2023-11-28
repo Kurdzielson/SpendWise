@@ -1,14 +1,14 @@
 using FluentValidation;
 using SpendWise.Shared.Abstraction.Validations;
 
-namespace SpendWise.Modules.Users.Core.Users.Commands.Public.SignUp;
+namespace SpendWise.Modules.Users.Core.Users.Commands.Admin.CreateUser;
 
-internal class SingUpValidator : AbstractValidator<SignUpCommand>
+internal class CreateUserValidator : AbstractValidator<CreateUserCommand>
 {
     private const int PasswordMaxLength = 100;
     private const int PasswordMinLength = 6;
 
-    public SingUpValidator()
+    public CreateUserValidator()
     {
         RuleFor(q => q.Email)
             .NotNull().IsRequiredMessage()
@@ -24,5 +24,8 @@ internal class SingUpValidator : AbstractValidator<SignUpCommand>
             .NotNull().IsRequiredMessage()
             .NotEmpty().IsRequiredMessage()
             .Equal(q => q.Password).WithMessage("Password should match ConfirmPassword");
+
+        RuleFor(q => q.Role)
+            .NotEmpty().IsRequiredMessage();
     }
 }

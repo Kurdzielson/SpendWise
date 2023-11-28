@@ -3,7 +3,7 @@ namespace SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State;
 internal class AvailableUserStates
 {
     public static readonly UserState Active = new(AvailableUserStateCodes.Active);
-    private static readonly UserState Locked = new(AvailableUserStateCodes.Locked);
+    public static readonly UserState Locked = new(AvailableUserStateCodes.Locked);
 
     private static readonly HashSet<UserState> AllStates = new()
     {
