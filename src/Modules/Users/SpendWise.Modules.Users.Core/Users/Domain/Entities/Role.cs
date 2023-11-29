@@ -9,8 +9,11 @@ internal class Role
     public static string Default => User;
     public const string User = "user";
     public const string Admin = "admin";
-    
-    private Role() {}
+
+    //solution to dotnet ef error
+    private Role()
+    {
+    }
 
     private Role(string name, IEnumerable<string> permissions)
     {
