@@ -52,7 +52,7 @@ internal class CustomerWriteConfiguration : IEntityTypeConfiguration<Customer>
             .HasConversion(q => q.Value, q => new CreatedAt(q));
 
         builder.Property<CustomerState>("State")
-            .HasConversion(q => q.Code, q => AvailableCustomerState.GetState(q));
+            .HasConversion(q => q.Code, q => AvailableCustomerStates.GetState(q));
 
         builder.Property<Date>("VerifiedAt")
             .HasConversion(q => q.Value, q => new Date(q));

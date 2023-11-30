@@ -10,7 +10,7 @@ internal class CustomerRepository(CustomersWriteDbContext context) : ICustomerRe
 
     public Task<bool> DoesExistAsync(string nick, CancellationToken cancellationToken)
         => _customers.AsNoTracking()
-            .Where(q => q.Nick == nick)
+            .Where(q => EF.Functions.ILike(q.Nick, nick))
             .AnyAsync(cancellationToken);
 
     public Task<bool> DoesExistAsync(Guid id, CancellationToken cancellationToken)

@@ -4,4 +4,5 @@ internal class CustomerDetailsDto : CustomerDto
 {
     public DateTime? CreatedAt { get; set; }
     public DateTimeOffset? CompletedAt { get; set; }
+    public DateTimeOffset? VerifiedAt { get; set; }
 }

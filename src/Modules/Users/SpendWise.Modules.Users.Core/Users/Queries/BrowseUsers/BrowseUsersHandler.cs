@@ -26,7 +26,7 @@ internal class BrowseUsersHandler(UsersReadDbContext context) : IQueryHandler<Br
     private IQueryable<UserReadModel> Filter(BrowseUsersQuery query, IQueryable<UserReadModel> users)
     {
         if (!string.IsNullOrEmpty(query.Role))
-            users = users.Where(q => EF.Functions.Like(q.Role.Name, query.Role.ToLowerInvariant()));
+            users = users.Where(q => EF.Functions.ILike(q.Role.Name, query.Role.ToLowerInvariant()));
 
         if (query.CreatedAtFrom is not null)
             users = users.Where(q => q.CreatedAt >= query.CreatedAtFrom);

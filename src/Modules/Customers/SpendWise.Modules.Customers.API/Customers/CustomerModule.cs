@@ -9,6 +9,11 @@ internal class CustomerModule : IModule
 {
     public string Name { get; }
 
+    public const string Policy = "customers";
+    public IEnumerable<string> Policies { get; } = new[]
+    {
+        Policy
+    };
     public void Register(IServiceCollection services)
     {
         services.AddCore();

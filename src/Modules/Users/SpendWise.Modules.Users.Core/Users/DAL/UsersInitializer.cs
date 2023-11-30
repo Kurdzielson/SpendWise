@@ -10,15 +10,15 @@ internal sealed class UsersInitializer(UsersWriteDbContext dbContext, ILogger<Us
     : IInitializer
 {
     private const string Users = "users";
+    private const string Customers = "customers";
 
-    private static readonly HashSet<string> UserPermissions = new ()
+    private static readonly HashSet<string> UserPermissions = new()
     {
-        
     };
 
-    private static readonly HashSet<string> AdminPermissions = new (UserPermissions)
+    private static readonly HashSet<string> AdminPermissions = new(UserPermissions)
     {
-        Users
+        Users, Customers
     };
 
     private readonly IEnumerable<Role> _roles = new List<Role>()
@@ -26,7 +26,7 @@ internal sealed class UsersInitializer(UsersWriteDbContext dbContext, ILogger<Us
         Role.Create(Role.User, UserPermissions),
         Role.Create(Role.Admin, AdminPermissions)
     };
-    
+
     public async Task InitAsync()
     {
         if (await dbContext.Roles.AnyAsync())
@@ -44,7 +44,7 @@ internal sealed class UsersInitializer(UsersWriteDbContext dbContext, ILogger<Us
     {
         foreach (var role in _roles)
             await dbContext.Roles.AddAsync(role);
-        
+
 
         logger.LogInformation("Initialized roles.");
     }
@@ -59,5 +59,4 @@ internal sealed class UsersInitializer(UsersWriteDbContext dbContext, ILogger<Us
         await dbContext.SaveChangesAsync();
         logger.LogInformation("Updated roles.");
     }
-    
 }

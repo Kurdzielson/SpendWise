@@ -5,7 +5,7 @@ namespace SpendWise.Shared.Abstraction.Kernel.ValueObjects.Nick;
 public class Nick : ValueObject
 {
     public string? Value { get; }
-    private const int MaxLength = 100;
+    private const int MaxLength = 30;
     private const int MinLength = 6;
 
     public Nick(string? value)
@@ -20,7 +20,7 @@ public class Nick : ValueObject
         {
             throw new InvalidNickException(value);
         }
-
+        
         Value = value;
     }
 

@@ -1,6 +1,6 @@
 namespace SpendWise.Modules.Customers.Core.Customers.Domain.ValueObjects.State;
 
-internal abstract class AvailableCustomerState
+internal abstract class AvailableCustomerStates
 {
     public static readonly CustomerState New = new(AvailableCustomerStateCodes.New);
     public static readonly CustomerState Completed = new(AvailableCustomerStateCodes.Completed);
