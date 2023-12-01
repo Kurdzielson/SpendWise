@@ -74,7 +74,7 @@ internal class CustomersController(IDispatcher dispatcher, IContext context) : C
         return NoContent();
     }
 
-    [HttpPut("{customerID:guid}/lock")]
+    [HttpPut("{customerId:guid}/lock")]
     [Authorize(CustomerModule.Policy)]
     [SwaggerOperation("Lock Customer")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
@@ -87,7 +87,7 @@ internal class CustomersController(IDispatcher dispatcher, IContext context) : C
         return NoContent();
     }
 
-    [HttpPut("{customerID:guid}/unlock")]
+    [HttpPut("{customerId:guid}/unlock")]
     [Authorize(CustomerModule.Policy)]
     [SwaggerOperation("Unlock Customer")]
     [SwaggerResponse(StatusCodes.Status204NoContent)]
