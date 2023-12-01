@@ -72,7 +72,7 @@ public static class Extensions
                 Title = "Modular API",
                 Version = "v1"
             });
-        });
+        });   
 
         var appOptions = services.GetOptions<AppOptions>("app");
         services.AddSingleton(appOptions);

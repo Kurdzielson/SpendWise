@@ -20,7 +20,7 @@ internal class User
     public UserState State { get; set; }
     public Date CreatedAt { get; set; }
 
-    //solution to dotnet ef bug
+    //solution to dotnet ef error
     private User()
     {
     }
