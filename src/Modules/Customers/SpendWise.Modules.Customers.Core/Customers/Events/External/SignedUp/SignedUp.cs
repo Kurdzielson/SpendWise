@@ -1,5 +1,5 @@
 using SpendWise.Shared.Abstraction.Events;
 
-namespace SpendWise.Modules.Customers.Core.Users.Events.SignedUp;
+namespace SpendWise.Modules.Customers.Core.Customers.Events.External.SignedUp;
 
 internal record SignedUp(Guid UserId, string Email, string Role) : IEvent;

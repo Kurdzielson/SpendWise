@@ -1,6 +1,4 @@
-using SpendWise.Shared.Abstraction.Kernel.Enums;
-
-namespace SpendWise.Modules.Customers.Core.Users.Clients.DTO;
+namespace SpendWise.Modules.Customers.Core.Customers.Clients.UsersClient.DTO;
 
 internal class UserDto
 {

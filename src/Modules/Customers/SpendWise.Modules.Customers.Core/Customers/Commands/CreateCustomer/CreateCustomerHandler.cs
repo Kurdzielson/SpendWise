@@ -1,9 +1,8 @@
 using Microsoft.Extensions.Logging;
+using SpendWise.Modules.Customers.Core.Customers.Clients.UsersClient;
 using SpendWise.Modules.Customers.Core.Customers.Domain.Entities;
 using SpendWise.Modules.Customers.Core.Customers.Domain.Repositories;
 using SpendWise.Modules.Customers.Core.Customers.Exceptions;
-using SpendWise.Modules.Customers.Core.Users.Clients;
-using SpendWise.Modules.Customers.Core.Users.Exceptions;
 using SpendWise.Shared.Abstraction.Commands;
 using SpendWise.Shared.Abstraction.Kernel.ValueObjects.Email;
 using SpendWise.Shared.Abstraction.Time;

@@ -4,7 +4,7 @@ using SpendWise.Modules.Customers.Core.Customers.Domain.Repositories;
 using SpendWise.Shared.Abstraction.Events;
 using SpendWise.Shared.Abstraction.Time;
 
-namespace SpendWise.Modules.Customers.Core.Users.Events.SignedUp;
+namespace SpendWise.Modules.Customers.Core.Customers.Events.External.SignedUp;
 
 internal class SignedUpHandler(IClock clock,
         ILogger<SignedUpHandler> logger,

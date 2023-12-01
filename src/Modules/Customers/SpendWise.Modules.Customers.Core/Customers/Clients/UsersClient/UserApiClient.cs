@@ -1,7 +1,7 @@
-using SpendWise.Modules.Customers.Core.Users.Clients.DTO;
+using SpendWise.Modules.Customers.Core.Customers.Clients.UsersClient.DTO;
 using SpendWise.Shared.Abstraction.Modules;
 
-namespace SpendWise.Modules.Customers.Core.Users.Clients;
+namespace SpendWise.Modules.Customers.Core.Customers.Clients.UsersClient;
 
 internal class UserApiClient(IModuleClient client) : IUserApiClient
 {
