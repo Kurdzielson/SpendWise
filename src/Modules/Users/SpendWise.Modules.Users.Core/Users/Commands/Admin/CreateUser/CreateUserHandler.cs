@@ -35,7 +35,7 @@ internal class CreateUserHandler
         var user = User.Create(email, password, command.Role, AvailableUserStates.Default, now);
 
         var userId = await userRepository.AddAsync(user, cancellationToken);
-        await messageBroker.PublishAsync(new SignedUp(userId, email, command.Role), cancellationToken);
+        await messageBroker.PublishAsync(new Created(userId, email, command.Role), cancellationToken);
         logger.LogInformation($"User with ID: '{userId}' has been created.");
     }
 }

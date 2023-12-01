@@ -10,8 +10,4 @@
       <ProjectReference Include="..\..\..\Shared\SpendWise.Shared.Infrastructure\SpendWise.Shared.Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Customers\Events\External\Users\" />
-    </ItemGroup>
-
 </Project>
