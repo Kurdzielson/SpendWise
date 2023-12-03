@@ -7,7 +7,7 @@ using SpendWise.Shared.Abstraction.Modules;
 using SpendWise.Shared.Abstraction.Queries;
 using SpendWise.Shared.Infrastructure.Modules;
 
-namespace SpendWise.Modules.Users.API.Users.Endpoints.User;
+namespace SpendWise.Modules.Users.API.Users;
 
 internal class UsersModule : IModule
 {
