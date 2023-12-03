@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpendWise.Modules.Users.Core.Users.Commands.Admin.CreateUser;
 using SpendWise.Shared.Abstraction.Dispatchers;
+using SpendWise.Shared.Abstraction.Kernel.Responses;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SpendWise.Modules.Users.API.Users.Endpoints.User.Admin.CreateUser;
@@ -12,7 +13,7 @@ namespace SpendWise.Modules.Users.API.Users.Endpoints.User.Admin.CreateUser;
 [Authorize(UsersModule.Policy)]
 internal class CreateUser(IDispatcher dispatcher) : EndpointBaseAsync
     .WithRequest<CreateUserCommand>
-    .WithActionResult
+    .WithActionResult<UpdateResponse>
 {
     [HttpPost("create")]
     [SwaggerOperation(
@@ -22,10 +23,10 @@ internal class CreateUser(IDispatcher dispatcher) : EndpointBaseAsync
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public override async Task<ActionResult> HandleAsync(CreateUserCommand request,
+    public override async Task<ActionResult<UpdateResponse>> HandleAsync(CreateUserCommand request,
         CancellationToken cancellationToken = default)
     {
-        await dispatcher.SendAsync(request, cancellationToken);
-        return NoContent();
+        var result = await dispatcher.SendAsync<CreateUserCommand, CreateResponse>(request, cancellationToken);
+        return Ok(result);
     }
 }

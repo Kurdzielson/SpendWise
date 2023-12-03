@@ -22,7 +22,7 @@ internal class SignIn(IDispatcher dispatcher, IUserRequestStorage userRequestSto
         Summary = "Sing In",
         Description = "Sing In",
         Tags = new[] { AccountEndpoints.Tag })]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public override async Task<ActionResult> HandleAsync(SignInCommand request,
         CancellationToken cancellationToken = default)

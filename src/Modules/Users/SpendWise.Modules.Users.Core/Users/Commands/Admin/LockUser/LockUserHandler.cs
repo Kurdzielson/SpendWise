@@ -5,15 +5,17 @@ using SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State;
 using SpendWise.Modules.Users.Core.Users.Events;
 using SpendWise.Modules.Users.Core.Users.Exceptions;
 using SpendWise.Shared.Abstraction.Commands;
+using SpendWise.Shared.Abstraction.Kernel.Responses;
 using SpendWise.Shared.Abstraction.Messaging;
 using SpendWise.Shared.Infrastructure.Api;
 
 namespace SpendWise.Modules.Users.Core.Users.Commands.Admin.LockUser;
 
 internal class LockUserHandler(IUserRepository userRepository, ILogger<LockUserHandler> logger,
-    IMessageBroker messageBroker) : ICommandHandler<LockUserCommand>
+    IMessageBroker messageBroker) : ICommandHandler<LockUserCommand, UpdateResponse>
 {
-    public async Task HandleAsync(LockUserCommand command, CancellationToken cancellationToken = default)
+    public async Task<UpdateResponse> HandleAsync(LockUserCommand command,
+        CancellationToken cancellationToken = default)
     {
         var user = await userRepository.GetAsync(command.UserId, cancellationToken)
                    ?? throw new UserNotFoundException(command.UserId);
@@ -29,5 +31,7 @@ internal class LockUserHandler(IUserRepository userRepository, ILogger<LockUserH
         var userId = await userRepository.UpdateAsync(user, cancellationToken);
         logger.LogInformation($"User with Id: '{userId}' has been locked.");
         await messageBroker.PublishAsync(new Locked(user.Id), cancellationToken);
+
+        return new UpdateResponse(userId);
     }
 }
