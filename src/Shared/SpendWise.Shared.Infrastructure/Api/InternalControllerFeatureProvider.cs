@@ -16,7 +16,7 @@ internal sealed class InternalControllerFeatureProvider : ControllerFeatureProvi
         if (typeInfo.IsAbstract)
         {
             return false;
-        }
+        }   
 
         if (typeInfo.ContainsGenericParameters)
         {

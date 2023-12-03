@@ -13,16 +13,16 @@ internal class UsersModule : IModule
 {
     public string Name { get; } = "Users";
     public const string Policy = "users";
+
     public IEnumerable<string> Policies { get; } = new[]
     {
         Policy
     };
 
     public void Register(IServiceCollection services)
-    {
-        services.AddCore();
-    }
-        
+        => services.AddCore();
+
+
     public void Use(IApplicationBuilder app)
     {
         app.UseModuleRequests()

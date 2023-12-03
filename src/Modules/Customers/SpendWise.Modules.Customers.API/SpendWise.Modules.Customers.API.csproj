@@ -10,4 +10,8 @@
       <ProjectReference Include="..\SpendWise.Modules.Customers.Core\SpendWise.Modules.Customers.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Customers\Endpoints\Customers\Public\" />
+    </ItemGroup>
+
 </Project>

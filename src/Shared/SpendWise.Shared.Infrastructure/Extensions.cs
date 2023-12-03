@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using SpendWise.Shared.Abstraction.Cookies;
 using SpendWise.Shared.Abstraction.Dispatchers;
 using SpendWise.Shared.Abstraction.Modules;
 using SpendWise.Shared.Abstraction.Storage;
@@ -17,6 +18,7 @@ using SpendWise.Shared.Infrastructure.Auth;
 using SpendWise.Shared.Infrastructure.Commands;
 using SpendWise.Shared.Infrastructure.Contexts;
 using SpendWise.Shared.Infrastructure.Contracts;
+using SpendWise.Shared.Infrastructure.Cookies;
 using SpendWise.Shared.Infrastructure.Dispatchers;
 using SpendWise.Shared.Infrastructure.Events;
 using SpendWise.Shared.Infrastructure.Exceptions;
@@ -30,6 +32,7 @@ using SpendWise.Shared.Infrastructure.Queries;
 using SpendWise.Shared.Infrastructure.Serialization;
 using SpendWise.Shared.Infrastructure.Services;
 using SpendWise.Shared.Infrastructure.Storage;
+using SpendWise.Shared.Infrastructure.Swagger;
 using SpendWise.Shared.Infrastructure.Time;
 
 namespace SpendWise.Shared.Infrastructure;
@@ -72,10 +75,12 @@ public static class Extensions
                 Title = "Modular API",
                 Version = "v1"
             });
-        });   
+            swagger.OperationFilter<AddOperationIdFilter>();
+        });
 
         var appOptions = services.GetOptions<AppOptions>("app");
         services.AddSingleton(appOptions);
+        services.AddScoped<ICookieService, CookieService>();
 
         services.AddMemoryCache();
         services.AddHttpClient();
@@ -132,10 +137,7 @@ public static class Extensions
         app.UseCors("cors");
         app.UseCorrelationId();
         app.UseErrorHandling();
-        app.UseSwagger(swagger =>
-        {
-            swagger.SerializeAsV2 = true;
-        });
+        app.UseSwagger(swagger => { swagger.SerializeAsV2 = true; });
         app.UseReDoc(reDoc =>
         {
             reDoc.RoutePrefix = "docs";

@@ -17,9 +17,6 @@ internal class UnlockUserHandler(IUserRepository userRepository, ILogger<UnlockU
         var user = await userRepository.GetAsync(command.UserId, cancellationToken)
                    ?? throw new UserNotFoundException(command.UserId);
 
-        if (user.Role.Name.Equals(Role.Admin, StringComparison.InvariantCultureIgnoreCase))
-            throw new CannotLockAdminAccountException();
-
         if (user.State == AvailableUserStates.Active)
             throw new UserIsActive(user.Id);
 
