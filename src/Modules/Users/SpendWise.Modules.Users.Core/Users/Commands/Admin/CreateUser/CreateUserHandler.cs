@@ -6,17 +6,19 @@ using SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State;
 using SpendWise.Modules.Users.Core.Users.Events;
 using SpendWise.Modules.Users.Core.Users.Exceptions;
 using SpendWise.Shared.Abstraction.Commands;
+using SpendWise.Shared.Abstraction.Kernel.Responses;
 using SpendWise.Shared.Abstraction.Messaging;
 using SpendWise.Shared.Abstraction.Time;
 
 namespace SpendWise.Modules.Users.Core.Users.Commands.Admin.CreateUser;
 
-internal class CreateUserHandler
-(IUserRepository userRepository, IPasswordHasher<User> passwordHasher,
+internal class CreateUserHandler(IUserRepository userRepository, IPasswordHasher<User> passwordHasher,
     RegistrationOptions registrationOptions, IRoleRepository roleRepository,
-    IClock clock, ILogger<CreateUserHandler> logger, IMessageBroker messageBroker) : ICommandHandler<CreateUserCommand>
+    IClock clock, ILogger<CreateUserHandler> logger,
+    IMessageBroker messageBroker) : ICommandHandler<CreateUserCommand, CreateResponse>
 {
-    public async Task HandleAsync(CreateUserCommand command, CancellationToken cancellationToken = default)
+    public async Task<CreateResponse> HandleAsync(CreateUserCommand command,
+        CancellationToken cancellationToken = default)
     {
         var email = command.Email.ToLowerInvariant();
         var provider = email.Split("@").Last();
@@ -37,5 +39,7 @@ internal class CreateUserHandler
         var userId = await userRepository.AddAsync(user, cancellationToken);
         await messageBroker.PublishAsync(new Created(userId, email, command.Role), cancellationToken);
         logger.LogInformation($"User with ID: '{userId}' has been created.");
+
+        return new CreateResponse(userId);
     }
 }

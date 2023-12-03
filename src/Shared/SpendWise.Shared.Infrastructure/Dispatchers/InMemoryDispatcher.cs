@@ -5,26 +5,20 @@ using SpendWise.Shared.Abstraction.Queries;
 
 namespace SpendWise.Shared.Infrastructure.Dispatchers;
 
-internal sealed class InMemoryDispatcher : IDispatcher
-{
-    private readonly ICommandDispatcher _commandDispatcher;
-    private readonly IEventDispatcher _eventDispatcher;
-    private readonly IQueryDispatcher _queryDispatcher;
-
-    public InMemoryDispatcher(ICommandDispatcher commandDispatcher, IEventDispatcher eventDispatcher,
+internal sealed class InMemoryDispatcher(ICommandDispatcher commandDispatcher, IEventDispatcher eventDispatcher,
         IQueryDispatcher queryDispatcher)
-    {
-        _commandDispatcher = commandDispatcher;
-        _eventDispatcher = eventDispatcher;
-        _queryDispatcher = queryDispatcher;
-    }
-
+    : IDispatcher
+{
     public Task SendAsync<T>(T command, CancellationToken cancellationToken = default) where T : class, ICommand
-        => _commandDispatcher.SendAsync(command, cancellationToken);
+        => commandDispatcher.SendAsync(command, cancellationToken);
+
+    public Task<TResult> SendAsync<T, TResult>(T command, CancellationToken cancellationToken = default)
+        where T : class, ICommand<TResult> where TResult : class
+        => commandDispatcher.SendAsync<T, TResult>(command, cancellationToken);
 
     public Task PublishAsync<T>(T @event, CancellationToken cancellationToken = default) where T : class, IEvent
-        => _eventDispatcher.PublishAsync(@event, cancellationToken);
+        => eventDispatcher.PublishAsync(@event, cancellationToken);
 
     public Task<TResult> QueryAsync<TResult>(IQuery<TResult> query, CancellationToken cancellationToken = default)
-        => _queryDispatcher.QueryAsync(query, cancellationToken);
+        => queryDispatcher.QueryAsync(query, cancellationToken);
 }

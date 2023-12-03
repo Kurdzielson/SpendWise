@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpendWise.Modules.Users.Core.Users.Commands.Admin.CreateUser;
 using SpendWise.Shared.Abstraction.Dispatchers;
+using SpendWise.Shared.Abstraction.Kernel.Responses;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SpendWise.Modules.Users.API.Users.Endpoints.User.Admin.CreateUser;
@@ -25,7 +26,7 @@ internal class CreateUser(IDispatcher dispatcher) : EndpointBaseAsync
     public override async Task<ActionResult> HandleAsync(CreateUserCommand request,
         CancellationToken cancellationToken = default)
     {
-        await dispatcher.SendAsync(request, cancellationToken);
-        return NoContent();
+        var result = await dispatcher.SendAsync<CreateUserCommand, CreateResponse>(request, cancellationToken);
+        return Ok(result);
     }
 }
