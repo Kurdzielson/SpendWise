@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpendWise.Modules.Customers.Core.Customers.Commands.CreateCustomer;
 using SpendWise.Shared.Abstraction.Dispatchers;
+using SpendWise.Shared.Abstraction.Kernel.Responses;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SpendWise.Modules.Customers.API.Customers.Endpoints.Customers.Public.CreateCustomer;
@@ -10,7 +11,7 @@ namespace SpendWise.Modules.Customers.API.Customers.Endpoints.Customers.Public.C
 [Route(CustomerEndpoints.Route)]
 internal class CreateCustomer(IDispatcher dispatcher) : EndpointBaseAsync
     .WithRequest<CreateCustomerCommand>
-    .WithActionResult
+    .WithActionResult<CreateResponse>
 {
     [HttpPost]
     [SwaggerOperation(
@@ -20,10 +21,10 @@ internal class CreateCustomer(IDispatcher dispatcher) : EndpointBaseAsync
     [SwaggerResponse(StatusCodes.Status204NoContent)]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public override async Task<ActionResult> HandleAsync(CreateCustomerCommand command,
+    public override async Task<ActionResult<CreateResponse>> HandleAsync(CreateCustomerCommand command,
         CancellationToken cancellationToken = default)
     {
-        await dispatcher.SendAsync(command, cancellationToken);
-        return NoContent();
+        var result = await dispatcher.SendAsync<CreateCustomerCommand, CreateResponse>(command, cancellationToken);
+        return Ok(result);
     }
 }

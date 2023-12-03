@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpendWise.Modules.Customers.Core.Customers.Commands.UnlockCustomer;
 using SpendWise.Shared.Abstraction.Dispatchers;
+using SpendWise.Shared.Abstraction.Kernel.Responses;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SpendWise.Modules.Customers.API.Customers.Endpoints.Customers.Admin.UnlockCustomer;
@@ -12,7 +13,7 @@ namespace SpendWise.Modules.Customers.API.Customers.Endpoints.Customers.Admin.Un
 [Authorize(CustomerModule.Policy)]
 internal class UnlockCustomer(IDispatcher dispatcher) : EndpointBaseAsync
     .WithRequest<Guid>
-    .WithActionResult
+    .WithActionResult<UpdateResponse>
 {
     [HttpPut("{customerId:guid}/unlock")]
     [SwaggerOperation(
@@ -23,10 +24,12 @@ internal class UnlockCustomer(IDispatcher dispatcher) : EndpointBaseAsync
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(StatusCodes.Status401Unauthorized)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public override async Task<ActionResult> HandleAsync(Guid customerId,
+    public override async Task<ActionResult<UpdateResponse>> HandleAsync(Guid customerId,
         CancellationToken cancellationToken = default)
     {
-        await dispatcher.SendAsync(new UnlockCustomerCommand(customerId), cancellationToken);
-        return NoContent();
+        var result =
+            await dispatcher.SendAsync<UnlockCustomerCommand, UpdateResponse>(new UnlockCustomerCommand(customerId),
+                cancellationToken);
+        return Ok(result);
     }
 }

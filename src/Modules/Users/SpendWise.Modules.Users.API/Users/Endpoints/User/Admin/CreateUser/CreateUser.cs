@@ -13,7 +13,7 @@ namespace SpendWise.Modules.Users.API.Users.Endpoints.User.Admin.CreateUser;
 [Authorize(UsersModule.Policy)]
 internal class CreateUser(IDispatcher dispatcher) : EndpointBaseAsync
     .WithRequest<CreateUserCommand>
-    .WithActionResult
+    .WithActionResult<UpdateResponse>
 {
     [HttpPost("create")]
     [SwaggerOperation(
@@ -23,7 +23,7 @@ internal class CreateUser(IDispatcher dispatcher) : EndpointBaseAsync
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public override async Task<ActionResult> HandleAsync(CreateUserCommand request,
+    public override async Task<ActionResult<UpdateResponse>> HandleAsync(CreateUserCommand request,
         CancellationToken cancellationToken = default)
     {
         var result = await dispatcher.SendAsync<CreateUserCommand, CreateResponse>(request, cancellationToken);

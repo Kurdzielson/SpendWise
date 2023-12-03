@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SpendWise.Modules.Customers.Core.Customers.Commands.VerifyCustomer;
 using SpendWise.Shared.Abstraction.Contexts;
 using SpendWise.Shared.Abstraction.Dispatchers;
+using SpendWise.Shared.Abstraction.Kernel.Responses;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SpendWise.Modules.Customers.API.Customers.Endpoints.Customers.User.VerifyCustomer;
@@ -14,7 +15,7 @@ namespace SpendWise.Modules.Customers.API.Customers.Endpoints.Customers.User.Ver
 internal class VerifyCustomer(IDispatcher dispatcher, IContext context)
     : EndpointBaseAsync
         .WithoutRequest
-        .WithActionResult
+        .WithActionResult<UpdateResponse>
 {
     [HttpPut("verify")]
     [Authorize]
@@ -26,10 +27,10 @@ internal class VerifyCustomer(IDispatcher dispatcher, IContext context)
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
     [SwaggerResponse(StatusCodes.Status401Unauthorized)]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public override async Task<ActionResult> HandleAsync(CancellationToken cancellationToken = new CancellationToken())
+    public override async Task<ActionResult<UpdateResponse>> HandleAsync(CancellationToken cancellationToken = default)
     {
         var command = new VerifyCustomerCommand(context.Identity.Id);
-        await dispatcher.SendAsync(command, cancellationToken);
-        return NoContent();
+        var result = await dispatcher.SendAsync<VerifyCustomerCommand, UpdateResponse>(command, cancellationToken);
+        return Ok(result);
     }
 }

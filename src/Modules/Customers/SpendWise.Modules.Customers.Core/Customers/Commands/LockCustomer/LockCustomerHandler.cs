@@ -4,14 +4,16 @@ using SpendWise.Modules.Customers.Core.Customers.Domain.ValueObjects.State;
 using SpendWise.Modules.Customers.Core.Customers.Events;
 using SpendWise.Modules.Customers.Core.Customers.Exceptions;
 using SpendWise.Shared.Abstraction.Commands;
+using SpendWise.Shared.Abstraction.Kernel.Responses;
 using SpendWise.Shared.Abstraction.Messaging;
 
 namespace SpendWise.Modules.Customers.Core.Customers.Commands.LockCustomer;
 
 internal class LockCustomerHandler(ICustomerRepository customerRepository, ILogger<LockCustomerHandler> logger,
-    IMessageBroker messageBroker) : ICommandHandler<LockCustomerCommand>
+    IMessageBroker messageBroker) : ICommandHandler<LockCustomerCommand, UpdateResponse>
 {
-    public async Task HandleAsync(LockCustomerCommand command, CancellationToken cancellationToken = default)
+    public async Task<UpdateResponse> HandleAsync(LockCustomerCommand command,
+        CancellationToken cancellationToken = default)
     {
         var customer = await customerRepository.GetAsync(command.CustomerId, cancellationToken)
                        ?? throw new CustomerNotFoundException(command.CustomerId);
@@ -21,8 +23,10 @@ internal class LockCustomerHandler(ICustomerRepository customerRepository, ILogg
 
         customer.Lock();
 
-        await customerRepository.UpdateAsync(customer, cancellationToken);
-        logger.LogInformation($"Customer with Id: '{customer.Id}' has been locked.");
-        await messageBroker.PublishAsync(new Locked(customer.Id), cancellationToken);
+        var customerId = await customerRepository.UpdateAsync(customer, cancellationToken);
+        logger.LogInformation($"Customer with Id: '{customerId}' has been locked.");
+        await messageBroker.PublishAsync(new Locked(customerId), cancellationToken);
+
+        return new UpdateResponse(customerId);
     }
 }
