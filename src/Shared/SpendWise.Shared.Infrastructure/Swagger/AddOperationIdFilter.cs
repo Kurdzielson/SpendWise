@@ -4,7 +4,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SpendWise.Shared.Infrastructure.Swagger;
 
-internal abstract class AddOperationIdFilter : IOperationFilter
+internal class AddOperationIdFilter : IOperationFilter
 {
     private static readonly Regex MyRegex = new Regex("(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z])", RegexOptions.Compiled);
 
