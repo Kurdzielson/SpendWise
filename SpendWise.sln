@@ -26,6 +26,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWise.Modules.Customers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWise.Modules.Customers.Core", "src\Modules\Customers\SpendWise.Modules.Customers.Core\SpendWise.Modules.Customers.Core.csproj", "{507772D4-62DA-4D19-BE8C-1947D0E82990}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Expenses", "Expenses", "{238BD89B-633E-4C8B-8A41-2C058EE00F34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWise.Modules.Expenses.API", "src\Modules\Expenses\SpendWise.Modules.Expenses.API\SpendWise.Modules.Expenses.API.csproj", "{767E4E3D-9AC5-4160-B0F6-27737E8EBB2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWise.Modules.Expenses.Core", "src\Modules\Expenses\SpendWise.Modules.Expenses.Core\SpendWise.Modules.Expenses.Core.csproj", "{0F1C0752-F537-4030-82BD-42C6FC33EE83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWise.Modules.Expenses.Application", "src\Modules\Expenses\SpendWise.Modules.Expenses.Application\SpendWise.Modules.Expenses.Application.csproj", "{764F1FD8-FCD6-4F78-AEA3-EBE52739F45E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWise.Modules.Expenses.Infrastructure", "src\Modules\Expenses\SpendWise.Modules.Expenses.Infrastructure\SpendWise.Modules.Expenses.Infrastructure.csproj", "{45122B39-4960-446C-9772-851C97716BE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +54,11 @@ Global
 		{FDFBA67C-C96E-4046-A609-1D575F3C0C74} = {F026D5A3-ECE2-4483-8542-18C606D38595}
 		{1D38A38F-BE2E-4743-8CAD-A0CBC118D4A3} = {FDFBA67C-C96E-4046-A609-1D575F3C0C74}
 		{507772D4-62DA-4D19-BE8C-1947D0E82990} = {FDFBA67C-C96E-4046-A609-1D575F3C0C74}
+		{238BD89B-633E-4C8B-8A41-2C058EE00F34} = {F026D5A3-ECE2-4483-8542-18C606D38595}
+		{767E4E3D-9AC5-4160-B0F6-27737E8EBB2E} = {238BD89B-633E-4C8B-8A41-2C058EE00F34}
+		{0F1C0752-F537-4030-82BD-42C6FC33EE83} = {238BD89B-633E-4C8B-8A41-2C058EE00F34}
+		{764F1FD8-FCD6-4F78-AEA3-EBE52739F45E} = {238BD89B-633E-4C8B-8A41-2C058EE00F34}
+		{45122B39-4960-446C-9772-851C97716BE5} = {238BD89B-633E-4C8B-8A41-2C058EE00F34}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AE1DB63A-2A87-4166-BF13-74F071F153D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -74,5 +89,21 @@ Global
 		{507772D4-62DA-4D19-BE8C-1947D0E82990}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{507772D4-62DA-4D19-BE8C-1947D0E82990}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{507772D4-62DA-4D19-BE8C-1947D0E82990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{767E4E3D-9AC5-4160-B0F6-27737E8EBB2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{767E4E3D-9AC5-4160-B0F6-27737E8EBB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{767E4E3D-9AC5-4160-B0F6-27737E8EBB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{767E4E3D-9AC5-4160-B0F6-27737E8EBB2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F1C0752-F537-4030-82BD-42C6FC33EE83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F1C0752-F537-4030-82BD-42C6FC33EE83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F1C0752-F537-4030-82BD-42C6FC33EE83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F1C0752-F537-4030-82BD-42C6FC33EE83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{764F1FD8-FCD6-4F78-AEA3-EBE52739F45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764F1FD8-FCD6-4F78-AEA3-EBE52739F45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764F1FD8-FCD6-4F78-AEA3-EBE52739F45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{764F1FD8-FCD6-4F78-AEA3-EBE52739F45E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45122B39-4960-446C-9772-851C97716BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45122B39-4960-446C-9772-851C97716BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45122B39-4960-446C-9772-851C97716BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45122B39-4960-446C-9772-851C97716BE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
