@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using SpendWise.Modules.Users.API.Users.Endpoints.Account;
 using SpendWise.Modules.Users.Core.Users;
 using SpendWise.Modules.Users.Core.Users.DTO;
 using SpendWise.Modules.Users.Core.Users.Queries.GetUserByEmail;
@@ -8,7 +7,7 @@ using SpendWise.Shared.Abstraction.Modules;
 using SpendWise.Shared.Abstraction.Queries;
 using SpendWise.Shared.Infrastructure.Modules;
 
-namespace SpendWise.Modules.Users.API.Users;
+namespace SpendWise.Modules.Users.API.Users.Endpoints.User;
 
 internal class UsersModule : IModule
 {

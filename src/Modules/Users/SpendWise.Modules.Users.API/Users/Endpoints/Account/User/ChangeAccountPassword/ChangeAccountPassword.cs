@@ -8,10 +8,10 @@ using SpendWise.Shared.Abstraction.Dispatchers;
 using SpendWise.Shared.Infrastructure.Api;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace SpendWise.Modules.Users.API.Users.Endpoints.Account.User.ChangePassword;
+namespace SpendWise.Modules.Users.API.Users.Endpoints.Account.User.ChangeAccountPassword;
 
 [Route(AccountEndpoints.Route)]
-internal class ChangePassword(IDispatcher dispatcher, IContext context)
+internal class ChangeAccountPassword(IDispatcher dispatcher, IContext context)
     : EndpointBaseAsync
         .WithRequest<ChangePasswordCommand>
         .WithActionResult
