@@ -1,5 +1,7 @@
 using SpendWise.Modules.Expenses.Core.Expenses.Types;
+using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Amount;
 using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Category;
+using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Description;
 using SpendWise.Modules.Expenses.Core.Tags.Entities;
 using SpendWise.Shared.Abstraction.Kernel.Types.CustomerId;
 using SpendWise.Shared.Abstraction.Kernel.ValueObjects.Currencies;
@@ -12,10 +14,9 @@ internal class Expense
     public ExpenseId Id { get; init; }
     public CustomerId CustomerId { get; set; }
     public Date Date { get; set; }
-    public decimal Amount { get; set; }
-    public string Description { get; set; }
+    public ExpenseAmount Amount { get; set; }
+    public ExpenseDescription Description { get; set; }
     public ExpenseCategory Category { get; set; }
-
     public Currency Currency { get; set; }
 
     //TODO Attachments
@@ -32,7 +33,8 @@ internal class Expense
     {
     }
 
-    private Expense(CustomerId customerId, Date date, decimal amount, string description, ExpenseCategory category,
+    private Expense(CustomerId customerId, Date date, ExpenseAmount amount, string description,
+        ExpenseCategory category,
         Currency currency)
     {
         Id = ExpenseId.Create();

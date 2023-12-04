@@ -7,11 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Expenses\Exceptions\" />
-      <Folder Include="Expenses\Repositories\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\..\Shared\SpendWise.Shared.Infrastructure\SpendWise.Shared.Infrastructure.csproj" />
     </ItemGroup>
 
