@@ -1,0 +1,56 @@
+using SpendWise.Modules.Expenses.Core.Expenses.Types;
+using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Category;
+using SpendWise.Modules.Expenses.Core.Tags.Entities;
+using SpendWise.Shared.Abstraction.Kernel.Types.CustomerId;
+using SpendWise.Shared.Abstraction.Kernel.ValueObjects.Currencies;
+using SpendWise.Shared.Abstraction.Kernel.ValueObjects.Date;
+
+namespace SpendWise.Modules.Expenses.Core.Expenses.Entities;
+
+internal class Expense
+{
+    public ExpenseId Id { get; init; }
+    public CustomerId CustomerId { get; set; }
+    public Date Date { get; set; }
+    public decimal Amount { get; set; }
+    public string Description { get; set; }
+    public ExpenseCategory Category { get; set; }
+
+    public Currency Currency { get; set; }
+
+    //TODO Attachments
+    public List<Tag> Tags
+    {
+        get => _tags;
+        set => _tags = value;
+    }
+
+    private List<Tag> _tags = new();
+
+    //solution to dotnet ef error
+    private Expense()
+    {
+    }
+
+    private Expense(CustomerId customerId, Date date, decimal amount, string description, ExpenseCategory category,
+        Currency currency)
+    {
+        Id = ExpenseId.Create();
+        CustomerId = customerId;
+        Date = date;
+        Amount = amount;
+        Description = description;
+        Category = category;
+        Currency = currency;
+    }
+
+    public static Expense Create(Guid customerId, DateTimeOffset date, decimal amount, string description,
+        ExpenseCategory category, Currency currency)
+        => new(customerId, date, amount, description, category, currency);
+
+    public void AddTag(Tag tag)
+        => _tags.Add(tag);
+
+    public void RemoveTag(Tag tag)
+        => _tags.Remove(tag);
+}

@@ -1,8 +1,6 @@
-using SpendWise.Shared.Abstraction.Kernel.Types;
+namespace SpendWise.Shared.Abstraction.Kernel.Types.CustomerId;
 
-namespace SpendWise.Modules.Customers.Core.Customers.Domain.Types;
-
-internal class CustomerId(Guid value) : TypeId(value)
+public class CustomerId(Guid value) : TypeId(value)
 {
     public static CustomerId CreateFromUser(Guid userId) 
         => new(userId);

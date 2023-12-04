@@ -6,4 +6,8 @@
         <Nullable>disable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SpendWise.Modules.Expenses.Infrastructure\SpendWise.Modules.Expenses.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>
