@@ -10,8 +10,4 @@
       <ProjectReference Include="..\SpendWise.Modules.Expenses.Application\SpendWise.Modules.Expenses.Application.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Repositories\" />
-    </ItemGroup>
-
 </Project>
