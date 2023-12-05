@@ -2,19 +2,24 @@ using Microsoft.EntityFrameworkCore;
 using SpendWise.Modules.Expenses.Application.Tags.DTO;
 using SpendWise.Modules.Expenses.Application.Tags.Queries.GetPaginated;
 using SpendWise.Modules.Expenses.Infrastructure.EF.Tags.Configurations.Read.Model;
+using SpendWise.Shared.Abstraction.Contexts;
 using SpendWise.Shared.Abstraction.Queries;
 using SpendWise.Shared.Infrastructure.Postgres;
 
 namespace SpendWise.Modules.Expenses.Infrastructure.EF.Tags.Queries.Handlers;
 
-internal class GetTagsHandler(ExpensesReadDbContext context) : IQueryHandler<GetTagsQuery, Paged<TagDto>>
+internal class GetTagsHandler(ExpensesReadDbContext expensesContext, IContext context)
+    : IQueryHandler<GetTagsQuery, Paged<TagDto>>
 {
     public async Task<Paged<TagDto>> HandleAsync(GetTagsQuery query, CancellationToken cancellationToken = default)
     {
-        var tags = context.Tags.AsNoTracking();
+        var customerId = context.Identity.Id;
+
+        var tags = expensesContext.Tags.AsNoTracking();
         tags = Filter(tags, query);
 
         var result = await tags
+            .Where(q => q.CustomerId == customerId)
             .Select(q => q.AsDto())
             .PaginateAsync(query, cancellationToken);
 
