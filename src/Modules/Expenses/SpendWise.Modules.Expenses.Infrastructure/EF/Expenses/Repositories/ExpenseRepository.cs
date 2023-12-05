@@ -8,8 +8,10 @@ internal class ExpenseRepository(ExpensesWriteDbContext context) : IExpenseRepos
 {
     private readonly DbSet<Expense> _expenses = context.Expenses;
 
-    public async Task<Expense> GetAsync(Guid id, CancellationToken cancellationToken)
-        => await _expenses.AsNoTracking().Where(q => q.Id == id).FirstOrDefaultAsync(cancellationToken);
+    public async Task<Expense> GetAsync(Guid id, Guid customerId, CancellationToken cancellationToken)
+        => await _expenses.AsNoTracking()
+            .Where(q => q.Id == id && q.CustomerId == customerId)
+            .FirstOrDefaultAsync(cancellationToken);
 
     public async Task<Guid> AddAsync(Expense expense, CancellationToken cancellationToken)
     {

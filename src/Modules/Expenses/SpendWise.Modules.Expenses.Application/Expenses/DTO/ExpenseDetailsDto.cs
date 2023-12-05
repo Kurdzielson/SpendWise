@@ -1,6 +1,5 @@
 using SpendWise.Modules.Expenses.Application.Tags.DTO;
 using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Description;
-using SpendWise.Modules.Expenses.Core.Tags.Entities;
 
 namespace SpendWise.Modules.Expenses.Application.Expenses.DTO;
 

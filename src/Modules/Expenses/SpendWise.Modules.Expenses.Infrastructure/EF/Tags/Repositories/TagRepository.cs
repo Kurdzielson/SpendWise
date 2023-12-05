@@ -8,10 +8,16 @@ internal class TagRepository(ExpensesWriteDbContext context) : ITagRepository
 {
     private readonly DbSet<Tag> _tags = context.Tags;
 
+    public Task<bool> DoesExistAsync(Guid id, Guid customerId, CancellationToken cancellationToken)
+        => _tags.AsNoTracking()
+            .Where(q => q.Id == id && q.CustomerId == customerId)
+            .AnyAsync(cancellationToken);
+
     public async Task<Tag> GetAsync(Guid id, Guid customerId, CancellationToken cancellationToken)
         => await _tags.AsNoTracking()
             .Where(q => q.Id == id && q.CustomerId == customerId)
             .FirstOrDefaultAsync(cancellationToken);
+
 
     public async Task<Guid> AddAsync(Tag tag, CancellationToken cancellationToken)
     {

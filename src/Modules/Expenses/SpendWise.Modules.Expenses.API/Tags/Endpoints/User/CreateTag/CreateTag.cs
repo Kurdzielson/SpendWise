@@ -1,11 +1,4 @@
-using Ardalis.ApiEndpoints;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using SpendWise.Modules.Expenses.Application.Tags.Commands.Create;
-using SpendWise.Shared.Abstraction.Dispatchers;
-using SpendWise.Shared.Abstraction.Kernel.Responses;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace SpendWise.Modules.Expenses.API.Tags.Endpoints.User.CreateTag;
 

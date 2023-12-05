@@ -20,5 +20,5 @@ internal class ExpenseCategory
     }
 
     private static bool IsCodeSupported(string code)
-        => AvailableCurrencyCodes.AllCodes.Contains(code, StringComparer.InvariantCultureIgnoreCase);
+        => AvailableExpenseCategoryCodes.AllCodes.Contains(code, StringComparer.InvariantCultureIgnoreCase);
 }

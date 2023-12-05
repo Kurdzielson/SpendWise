@@ -14,7 +14,7 @@ internal class AvailableExpenseCategoryCodes
     public static readonly string Salaries = nameof(Salaries);
     public static readonly string Office = nameof(Office);
 
-    public IReadOnlyCollection<string> AllCodes = new List<string>()
+    public static readonly IReadOnlyCollection<string> AllCodes = new List<string>()
     {
         Rent, Utilities, Transportation, Foods, Entertainment, Insurance, Taxes, Healthcare, Education, Salaries, Office
     };

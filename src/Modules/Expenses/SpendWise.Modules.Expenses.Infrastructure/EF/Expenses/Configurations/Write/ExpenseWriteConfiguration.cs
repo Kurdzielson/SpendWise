@@ -46,8 +46,5 @@ internal class ExpenseWriteConfiguration : IEntityTypeConfiguration<Expense>
         builder
             .Property<Currency>("Currency")
             .HasConversion(q => q.Code, q => AvailableCurrencies.GetCurrency(q));
-
-        builder.HasMany(q => q.Tags)
-            .WithMany(q => q.Expenses);
     }
 }

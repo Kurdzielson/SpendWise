@@ -1,9 +1,5 @@
-using Microsoft.Extensions.Logging;
 using SpendWise.Modules.Expenses.Application.Tags.Exceptions;
 using SpendWise.Modules.Expenses.Core.Tags.Repositories;
-using SpendWise.Shared.Abstraction.Commands;
-using SpendWise.Shared.Abstraction.Contexts;
-using SpendWise.Shared.Abstraction.Kernel.Responses;
 
 namespace SpendWise.Modules.Expenses.Application.Tags.Commands.Update;
 

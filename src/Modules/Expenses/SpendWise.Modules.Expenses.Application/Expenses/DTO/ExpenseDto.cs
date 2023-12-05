@@ -1,5 +1,4 @@
 using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Category;
-using SpendWise.Shared.Abstraction.Kernel.ValueObjects.Currencies;
 
 namespace SpendWise.Modules.Expenses.Application.Expenses.DTO;
 

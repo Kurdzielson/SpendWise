@@ -8,17 +8,11 @@ namespace SpendWise.Modules.Expenses.Core.Tags.Entities;
 
 internal class Tag
 {
-    private List<Expense> _expenses = new();
     public TagId Id { get; init; }
     public CustomerId CustomerId { get; set; }
     public TagName Name { get; set; }
     public TagColorHex ColorHex { get; set; }
-
-    public List<Expense> Expenses
-    {
-        get => _expenses;
-        set => _expenses = value;
-    }
+    
 
     //solution to dotnet ef error
     private Tag()

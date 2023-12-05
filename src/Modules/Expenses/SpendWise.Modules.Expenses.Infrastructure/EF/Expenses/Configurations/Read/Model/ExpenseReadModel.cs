@@ -11,5 +11,5 @@ internal class ExpenseReadModel
     public string Description { get; set; }
     public string Category { get; set; }
     public string Currency { get; set; }
-    public IEnumerable<TagReadModel> Tags { get; set; }
+    public IList<Guid> TagIds { get; set; }
 }

@@ -8,5 +8,4 @@ internal class TagReadModel
     public Guid CustomerId { get; set; }
     public string Name { get; set; }
     public string ColorHex { get; set; }
-    public IEnumerable<ExpenseReadModel> Expenses { get; set; }
 }

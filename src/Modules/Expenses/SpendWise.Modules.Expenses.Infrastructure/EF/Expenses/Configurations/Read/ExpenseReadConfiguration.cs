@@ -11,8 +11,5 @@ internal class ExpenseReadConfiguration : IEntityTypeConfiguration<ExpenseReadMo
         builder.ToTable("Expenses");
 
         builder.HasKey(q => q.Id);
-
-        builder.HasMany(q => q.Tags)
-            .WithMany(q => q.Expenses);
     }
 }
