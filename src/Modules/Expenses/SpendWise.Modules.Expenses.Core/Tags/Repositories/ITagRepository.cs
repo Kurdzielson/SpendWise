@@ -4,7 +4,7 @@ namespace SpendWise.Modules.Expenses.Core.Tags.Repositories;
 
 internal interface ITagRepository
 {
-    Task<Tag> GetAsync(Guid id, CancellationToken cancellationToken);
+    Task<Tag> GetAsync(Guid id, Guid customerId, CancellationToken cancellationToken);
     Task<Guid> AddAsync(Tag tag, CancellationToken cancellationToken);
     Task<Guid> UpdateAsync(Tag tag, CancellationToken cancellationToken);
     Task RemoveAsync(Tag tag, CancellationToken cancellationToken);

@@ -10,4 +10,12 @@
       <ProjectReference Include="..\SpendWise.Modules.Expenses.Core\SpendWise.Modules.Expenses.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Expenses\Commands\Create\" />
+      <Folder Include="Expenses\Commands\Delete\" />
+      <Folder Include="Expenses\Commands\Update\" />
+      <Folder Include="Expenses\Queries\GetPaginated\" />
+      <Folder Include="Expenses\Queries\GetSingle\" />
+    </ItemGroup>
+
 </Project>

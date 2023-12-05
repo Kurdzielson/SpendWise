@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SpendWise.Modules.Expenses.Infrastructure.EF;
@@ -11,9 +12,11 @@ using SpendWise.Modules.Expenses.Infrastructure.EF;
 namespace SpendWise.Modules.Expenses.Infrastructure.EF.Migrations
 {
     [DbContext(typeof(ExpensesWriteDbContext))]
-    partial class ExpensesWriteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231205131828_InitModule")]
+    partial class InitModule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

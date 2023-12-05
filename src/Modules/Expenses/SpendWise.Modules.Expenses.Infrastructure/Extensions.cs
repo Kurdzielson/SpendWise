@@ -3,7 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SpendWise.Modules.Expenses.Core.Expenses.Repositories;
 using SpendWise.Modules.Expenses.Core.Tags.Repositories;
 using SpendWise.Modules.Expenses.Infrastructure.EF;
-using SpendWise.Modules.Expenses.Infrastructure.Repositories;
+using SpendWise.Modules.Expenses.Infrastructure.EF.Expenses.Repositories;
+using SpendWise.Modules.Expenses.Infrastructure.EF.Tags.Repositories;
 using SpendWise.Shared.Infrastructure.Postgres;
 
 [assembly: InternalsVisibleTo("SpendWIse.Modules.Expenses.Api")]

@@ -15,9 +15,9 @@ internal class Expense
     public CustomerId CustomerId { get; set; }
     public Date Date { get; set; }
     public ExpenseAmount Amount { get; set; }
+    public Currency Currency { get; set; }
     public ExpenseDescription Description { get; set; }
     public ExpenseCategory Category { get; set; }
-    public Currency Currency { get; set; }
 
     //TODO Attachments
     public List<Tag> Tags
@@ -50,9 +50,6 @@ internal class Expense
         ExpenseCategory category, Currency currency)
         => new(customerId, date, amount, description, category, currency);
 
-    public void AddTag(Tag tag)
-        => _tags.Add(tag);
-
-    public void RemoveTag(Tag tag)
-        => _tags.Remove(tag);
+    public void AddTag(IEnumerable<Tag> tags)
+        => _tags.AddRange(tags);
 }

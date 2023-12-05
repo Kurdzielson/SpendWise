@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using SpendWise.Modules.Expenses.Infrastructure.EF.Configurations.Expenses.Read;
-using SpendWise.Modules.Expenses.Infrastructure.EF.Configurations.Expenses.Read.Model;
-using SpendWise.Modules.Expenses.Infrastructure.EF.Configurations.Tags.Read;
-using SpendWise.Modules.Expenses.Infrastructure.EF.Configurations.Tags.Read.Model;
+using SpendWise.Modules.Expenses.Infrastructure.EF.Expenses.Configurations.Read;
+using SpendWise.Modules.Expenses.Infrastructure.EF.Expenses.Configurations.Read.Model;
+using SpendWise.Modules.Expenses.Infrastructure.EF.Tags.Configurations.Read;
+using SpendWise.Modules.Expenses.Infrastructure.EF.Tags.Configurations.Read.Model;
 
 namespace SpendWise.Modules.Expenses.Infrastructure.EF;
 

@@ -10,4 +10,10 @@
       <ProjectReference Include="..\SpendWise.Modules.Expenses.Application\SpendWise.Modules.Expenses.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="EF\Expenses\Configurations\" />
+      <Folder Include="EF\Migrations\" />
+      <Folder Include="EF\Tags\Configurations\" />
+    </ItemGroup>
+
 </Project>

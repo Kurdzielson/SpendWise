@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SpendWise.Modules.Expenses.Core.Expenses.Entities;
 using SpendWise.Modules.Expenses.Core.Tags.Entities;
-using SpendWise.Modules.Expenses.Infrastructure.EF.Configurations.Expenses.Write;
-using SpendWise.Modules.Expenses.Infrastructure.EF.Configurations.Tags.Write;
+using SpendWise.Modules.Expenses.Infrastructure.EF.Expenses.Configurations.Write;
+using SpendWise.Modules.Expenses.Infrastructure.EF.Tags.Configurations.Write;
 
 namespace SpendWise.Modules.Expenses.Infrastructure.EF;
 
