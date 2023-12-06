@@ -12,8 +12,8 @@ internal class GetExpense(IDispatcher dispatcher)
 {
     [HttpGet("{expenseId:guid}")]
     [SwaggerOperation(
-        Summary = "Get Tag",
-        Description = "Get Customer's Tag",
+        Summary = "Get Expense",
+        Description = "Get Customer's Expense",
         Tags = new[] { ExpenseEndpoints.Tag })]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

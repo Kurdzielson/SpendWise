@@ -18,9 +18,6 @@ internal class Expense
     public ExpenseDescription Description { get; set; }
     public ExpenseCategory Category { get; set; }
 
-    //TODO Attachments
-    public List<Guid> TagIds { get; set; } = new();
-
     //solution to dotnet ef error
     private Expense()
     {
@@ -42,28 +39,13 @@ internal class Expense
         ExpenseCategory category, Currency currency)
         => new(customerId, date, amount, description, category, currency);
 
-    public void AddTags(IEnumerable<Guid> tagIds)
-        => TagIds.AddRange(tagIds);
-
     public void Update(DateTimeOffset date, decimal amount, string description, Currency currency,
-        ExpenseCategory category, IEnumerable<Guid> tagIds)
+        ExpenseCategory category)
     {
         Date = date;
         Amount = amount;
         Description = description;
         Currency = currency;
         Category = category;
-
-        var tagsToRemove = TagIds.Where(q => !tagIds.Contains(q)).ToList();
-        var tagsToAdd = tagIds.Where(q => !TagIds.Contains(q)).ToList();
-        
-        RemoveTags(tagsToRemove);
-        AddTags(tagsToAdd);
-    }
-
-    private void RemoveTags(IEnumerable<Guid> tagIds)
-    {
-        foreach (var tagId in tagIds)
-            TagIds.Remove(tagId);
     }
 }

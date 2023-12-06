@@ -1,5 +1,3 @@
-using SpendWise.Modules.Expenses.Infrastructure.EF.Tags.Configurations.Read.Model;
-
 namespace SpendWise.Modules.Expenses.Infrastructure.EF.Expenses.Configurations.Read.Model;
 
 internal class ExpenseReadModel
@@ -11,5 +9,4 @@ internal class ExpenseReadModel
     public string Description { get; set; }
     public string Category { get; set; }
     public string Currency { get; set; }
-    public IList<Guid> TagIds { get; set; }
 }

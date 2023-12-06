@@ -12,7 +12,7 @@
 
     <ItemGroup>
       <Folder Include="EF\Expenses\Configurations\" />
-      <Folder Include="EF\Tags\Configurations\" />
+      <Folder Include="EF\Migrations\" />
     </ItemGroup>
 
 </Project>

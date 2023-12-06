@@ -1,13 +1,11 @@
 using SpendWise.Modules.Expenses.Application.Expenses.Exceptions;
-using SpendWise.Modules.Expenses.Application.Tags.Exceptions;
 using SpendWise.Modules.Expenses.Core.Expenses.Repositories;
 using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Category;
-using SpendWise.Modules.Expenses.Core.Tags.Repositories;
 
 namespace SpendWise.Modules.Expenses.Application.Expenses.Commands.Update;
 
 internal class UpdateExpenseHandler(IExpenseRepository expenseRepository, IContext context,
-        ILogger<UpdateExpenseHandler> logger, ITagRepository tagRepository)
+        ILogger<UpdateExpenseHandler> logger)
     : ICommandHandler<UpdateExpenseCommand, UpdateResponse>
 {
     public async Task<UpdateResponse> HandleAsync(UpdateExpenseCommand command,
@@ -20,11 +18,7 @@ internal class UpdateExpenseHandler(IExpenseRepository expenseRepository, IConte
         var expense = await expenseRepository.GetAsync(command.ExpenseId, customerId, cancellationToken)
                       ?? throw new ExpenseNotFoundException(command.ExpenseId);
 
-        foreach (var tagId in command.TagIds)
-            if (!await tagRepository.DoesExistAsync(tagId, customerId, cancellationToken))
-                throw new TagNotFound(tagId);
-        
-        expense.Update(command.Date, command.Amount, command.Description, currency, category, command.TagIds);
+        expense.Update(command.Date, command.Amount, command.Description, currency, category);
 
         await expenseRepository.UpdateAsync(expense, cancellationToken);
         logger.LogInformation($"Expense with Id: '{expense.Id}' has been updated by Customer with Id: '{customerId}'.");

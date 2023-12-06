@@ -40,9 +40,14 @@ internal class AvailableExpenseCategories
         "Office Supplies/Equipment",
         "These are costs associated with running an office, like the cost of computers, desks, etc.");
 
+    private static readonly ExpenseCategory Other = new(AvailableExpenseCategoryCodes.Other,
+        "Other",
+        "These are costs that do not fit under other specified categories.");
+
     private static readonly HashSet<ExpenseCategory> AllCategories = new()
     {
-        Rent, Utilities, Transportation, Foods, Entertainment, Insurance, Taxes, Healthcare, Education, Salaries, Office
+        Rent, Utilities, Transportation, Foods, Entertainment, Insurance, Taxes, Healthcare, Education, Salaries,
+        Office, Other
     };
 
     public static ExpenseCategory GetCategory(string code)
