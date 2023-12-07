@@ -14,7 +14,8 @@ internal class CreateExpenseHandler(IExpenseRepository expenseRepository, ILogge
         var currency = AvailableCurrencies.GetCurrency(command.Currency);
         var customerId = context.Identity.Id;
 
-        var expense = Expense.Create(customerId, command.Date, command.Amount, command.Description, category, currency);
+        var expense = Expense.Create(customerId, command.Name, command.Date, command.Amount, command.Description,
+            category, currency);
 
         var result = await expenseRepository.AddAsync(expense, cancellationToken);
         logger.LogInformation($"Expense with Id: '{result}' has been created by customer with Id: '{customerId}'.");

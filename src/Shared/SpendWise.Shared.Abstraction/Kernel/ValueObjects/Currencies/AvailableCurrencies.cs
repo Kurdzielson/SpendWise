@@ -29,7 +29,7 @@ public class AvailableCurrencies
         var currency =
             AllCurrencies.FirstOrDefault(q => q.Code.Contains(code, StringComparison.InvariantCultureIgnoreCase));
 
-        if (currency is null)
+        if (currency is null || !currency.IsActive)
             throw new UnsupportedCurrencyCodeException(code);
 
         return currency;

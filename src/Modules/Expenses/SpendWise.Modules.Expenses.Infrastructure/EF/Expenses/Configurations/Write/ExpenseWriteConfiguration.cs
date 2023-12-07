@@ -5,6 +5,7 @@ using SpendWise.Modules.Expenses.Core.Expenses.Types;
 using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Amount;
 using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Category;
 using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Description;
+using SpendWise.Modules.Expenses.Core.Expenses.ValueObjects.Name;
 using SpendWise.Shared.Abstraction.Kernel.Types.CustomerId;
 using SpendWise.Shared.Abstraction.Kernel.ValueObjects.Currencies;
 using SpendWise.Shared.Abstraction.Kernel.ValueObjects.Date;
@@ -46,5 +47,9 @@ internal class ExpenseWriteConfiguration : IEntityTypeConfiguration<Expense>
         builder
             .Property<Currency>("Currency")
             .HasConversion(q => q.Code, q => AvailableCurrencies.GetCurrency(q));
+
+        builder
+            .Property<ExpenseName>("Name")
+            .HasConversion(q => q.Value, q => new ExpenseName(q));
     }
 }
