@@ -1,4 +1,3 @@
-using SpendWise.Modules.Customers.Core.Customers.Domain.Types;
 using SpendWise.Shared.Abstraction.Exceptions;
 
 namespace SpendWise.Modules.Customers.Core.Customers.Exceptions;

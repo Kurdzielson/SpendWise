@@ -14,6 +14,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Modules\Customers\SpendWise.Modules.Customers.API\SpendWise.Modules.Customers.API.csproj" />
+      <ProjectReference Include="..\..\Modules\Expenses\SpendWise.Modules.Expenses.API\SpendWise.Modules.Expenses.API.csproj" />
       <ProjectReference Include="..\..\Modules\Users\SpendWise.Modules.Users.API\SpendWise.Modules.Users.API.csproj" />
       <ProjectReference Include="..\..\Shared\SpendWise.Shared.Infrastructure\SpendWise.Shared.Infrastructure.csproj" />
     </ItemGroup>

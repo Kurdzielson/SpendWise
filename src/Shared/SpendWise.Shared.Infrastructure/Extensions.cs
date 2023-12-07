@@ -34,6 +34,7 @@ using SpendWise.Shared.Infrastructure.Services;
 using SpendWise.Shared.Infrastructure.Storage;
 using SpendWise.Shared.Infrastructure.Swagger;
 using SpendWise.Shared.Infrastructure.Time;
+using SpendWise.Shared.Infrastructure.Validators;
 
 namespace SpendWise.Shared.Infrastructure;
 
@@ -96,6 +97,7 @@ public static class Extensions
         services.AddQueries(assemblies);
         services.AddEvents(assemblies);
         services.AddDomainEvents(assemblies);
+        // services.AddValidators(assemblies);
         services.AddMessaging();
         services.AddSingleton<IClock, UtcClock>();
         services.AddSingleton<IDispatcher, InMemoryDispatcher>();

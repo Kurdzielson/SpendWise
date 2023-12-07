@@ -1,4 +1,4 @@
-using SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State.Extensions;
+using SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State.Exceptions;
 
 namespace SpendWise.Modules.Users.Core.Users.Domain.ValueObjects.State;
 

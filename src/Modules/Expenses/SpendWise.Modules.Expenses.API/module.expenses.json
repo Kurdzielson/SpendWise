@@ -1,0 +1,8 @@
+{
+  "expenses": {
+    "module": {
+      "name": "Expenses",
+      "enabled": true
+    }
+  }
+}

@@ -1,5 +1,5 @@
-using SpendWise.Modules.Customers.Core.Customers.Domain.Types;
 using SpendWise.Modules.Customers.Core.Customers.Domain.ValueObjects.State;
+using SpendWise.Shared.Abstraction.Kernel.Types.CustomerId;
 using SpendWise.Shared.Abstraction.Kernel.Types.UserId;
 using SpendWise.Shared.Abstraction.Kernel.ValueObjects.CreatedAt;
 using SpendWise.Shared.Abstraction.Kernel.ValueObjects.Date;
